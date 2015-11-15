@@ -11,3 +11,4 @@ build/api-gen.js
 .idea
 node_modules/
 localStorage/
+src/version.js
