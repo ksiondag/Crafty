@@ -3,10 +3,13 @@
 // Definitions by: Gregory "Rory" Ksionda <https://github.com/ksiondag>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-declare module Crafty {
-    export function init(width: number, height: number, div_id: string): void;
+declare module CraftyJS {
 
-    export function e(components: string): Entity;
+    interface Static {
+        (value: string): Entity;
+        init(width: number, height: number, div_id: string): void;
+        e(components: string): Entity;
+    }
 
     interface Entity {
         attr(attribute: Attribute): Entity;
@@ -26,4 +29,4 @@ declare module Crafty {
     }
 }
 
-
+declare var Crafty: CraftyJS.Static;
