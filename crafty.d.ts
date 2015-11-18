@@ -6,15 +6,18 @@
 declare module CraftyJS {
 
     interface Static {
-        (value: string): Entity;
+        (value: string): AnyEntity;
         init(width: number, height: number, div_id: string): void;
-        e(components: string): Entity;
+        e(components: string): AnyEntity;
     }
 
-    interface Entity {
-        attr(attribute: Attribute): Entity;
-        text?(value: string): Entity;
-        textFont?(value: TextFont): Entity;
+    /*
+    Entities could have any number of defined functions
+    */
+    interface AnyEntity {
+        attr?(attribute: Attribute): AnyEntity;
+        text?(value: string): AnyEntity;
+        textFont?(value: TextFont): AnyEntity;
     }
 
     interface Attribute {
