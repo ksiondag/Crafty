@@ -4,13 +4,36 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 declare module CraftyJS {
-    
+
+    interface DefineScene {
+        (name: string, init: (data?: any) => void, uninit?: () => void): void;
+    }
+
+    type NotFunction = number|string|boolean|Array<any>;
+    interface NotFunctionObject {
+        [index: string]: NotFunction;
+    }
+    interface EnterScene {
+        (name: string, data?: NotFunction|NotFunctionObject): void;
+    }
+
+    interface DefineOrEnterScene extends DefineScene, EnterScene {
+    }
+
     interface Static {
         (selector: string): AnyEntity;
         (id: number): AnyEntity;
+
         init(width: number, height: number, divId: string): void;
+
         e(...components: string[]): AnyEntity;
         c(name: string, definition: Component): void;
+
+        // Repeated definitions here because Function Types can't be overloaded
+        scene: DefineOrEnterScene;
+        defineScene: DefineScene;
+        enterScene: EnterScene;
+
     }
 
     interface Component {
