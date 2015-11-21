@@ -98,6 +98,11 @@ declare module CraftyJS {
         destroy(): void;
     }
 
+    interface DelayComponent<T> extends Core<T> {
+        delay(call: () => void, delay: number, repeat?: number, callOff?: () => void): T;
+        cancelDelay(callback: () => void): T;
+    }
+
     interface TwoDComponent<T> extends Core<T> {
         x: number;
         y: number;
@@ -169,6 +174,7 @@ declare module CraftyJS {
     components
     */
     interface AnyEntity extends
+        DelayComponent<AnyEntity>,
         TwoDComponent<AnyEntity>,
         TextComponent<AnyEntity>,
         ColorComponent<AnyEntity>,
