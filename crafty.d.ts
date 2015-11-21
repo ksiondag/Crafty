@@ -32,6 +32,10 @@ declare module CraftyJS {
         variant?: string;
     }
 
+    interface Math {
+        randomInt(start: number, end: number): number;
+    }
+
     // Function types
     interface DefineScene {
         (name: string, init: (data?: any) => void, uninit?: () => void): void;
@@ -58,6 +62,8 @@ declare module CraftyJS {
         scene: DefineOrEnterScene;
         defineScene: DefineScene;
         enterScene: EnterScene;
+
+        math: Math;
     }
 
     // All entities have these properties
@@ -72,6 +78,8 @@ declare module CraftyJS {
         //  // Setting values
         attr(prop: string, val: any, silent?: boolean, recursive?: boolean): T;
         attr(map: Map, silent?: boolean, recursive?: boolean): T;
+
+        timeout(callback: () => void, delay: number): T;
 
         // // Event binding
         // // // Mouse
@@ -163,7 +171,7 @@ declare module CraftyJS {
         hit(component: string): boolean|CollisionObject[];
 
         // TODO: Verify callOff function definition
-        onHit(comp: string, callOn: CollisionCallback[], callOff: () => void): T;
+        onHit(comp: string, callOn: (data: CollisionCallback[]) => void, callOff: () => void): T;
 
         checkHits(componentList: string): T;
         checkHits(...componentList: string[]): T;
