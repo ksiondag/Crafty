@@ -58,7 +58,6 @@ declare module CraftyJS {
         scene: DefineOrEnterScene;
         defineScene: DefineScene;
         enterScene: EnterScene;
-
     }
 
     // All entities have these properties
@@ -100,8 +99,19 @@ declare module CraftyJS {
         color(): string;
     }
 
-    interface FourwayComponent<T> extends Core<T> {
+    interface FourwayComponent<T> extends MotionComponent<T>, Core<T> {
         fourway(speed: number): T;
+    }
+
+    interface MotionComponent<T> extends Core<T> {
+        resetMotion(): T;
+        motionDelta(): {x: number, y: number};
+        velocity(): {x: number, y: number};
+        acceleration(): {x: number, y: number};
+        vx: number;
+        vy: number;
+        ax: number;
+        ay: number;
     }
 
     /*
@@ -112,6 +122,7 @@ declare module CraftyJS {
         TextComponent<AnyEntity>,
         ColorComponent<AnyEntity>,
         FourwayComponent<AnyEntity>,
+        MotionComponent<AnyEntity>,
         Core<AnyEntity>
     {
     }
