@@ -151,7 +151,17 @@ declare module CraftyJS {
         ay: number;
     }
 
-    interface FourwayComponent<T> extends MotionComponent<T>, Core<T> {
+    interface MultiwayComponent<T> extends
+        MotionComponent<T>,
+        KeyboardComponent<T>,
+        Core<T>
+    {
+        // TODO: Not fully defined
+        _speed: {x: number, y: number};
+        speed(speed: number|{x: number, y: number}): T
+    }
+
+    interface FourwayComponent<T> extends MultiwayComponent<T>, Core<T> {
         fourway(speed: number): T;
     }
 
@@ -183,11 +193,16 @@ declare module CraftyJS {
     */
     interface AnyEntity extends
         DelayComponent<AnyEntity>,
+
         TwoDComponent<AnyEntity>,
-        TextComponent<AnyEntity>,
-        ColorComponent<AnyEntity>,
-        FourwayComponent<AnyEntity>,
         MotionComponent<AnyEntity>,
+        MultiwayComponent<AnyEntity>,
+        FourwayComponent<AnyEntity>,
+
+        TextComponent<AnyEntity>,
+
+        ColorComponent<AnyEntity>,
+
         Core<AnyEntity>
     {
     }
