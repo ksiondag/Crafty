@@ -64,6 +64,8 @@ declare module CraftyJS {
         enterScene: EnterScene;
 
         math: Math;
+        // TODO: update
+        sprite: any;
     }
 
     // All entities have these properties
